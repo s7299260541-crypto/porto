@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanjay L - Portfolio</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #1a73e8;
+            --secondary: #202124;
+            --accent: #fbbc04;
+            --light: #f8f9fa;
+            --gray: #5f6368;
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: var(--secondary);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--secondary);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .mobile-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+        
+        .hero-text {
+            flex: 1;
+        }
+        
+        .hero-text h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+        
+        .hero-text h2 {
+            font-size: 24px;
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        
+        .hero-text p {
+            font-size: 18px;
+            color: var(--gray);
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .btn:hover {
+            background-color: #0d62d9;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-github {
+            background-color: #333;
+        }
+        
+        .btn-github:hover {
+            background-color: #24292e;
+        }
+        
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .profile-img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Section Common Styles */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--secondary);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 4px;
+            background-color: var(--accent);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .section-title p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* About Section */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-text {
+            flex: 2;
+        }
+        
+        .about-text h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+        
+        .education-details {
+            flex: 1;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .education-details h3 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .education-item {
+            margin-bottom: 25px;
+        }
+        
+        .education-item h4 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: var(--secondary);
+        }
+        
+        .education-item p {
+            color: var(--gray);
+        }
+        
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .skill-category {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .skill-category h3 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .skill-category h3 i {
+            color: var(--accent);
+        }
+        
+        .skill-list {
+            list-style: none;
+        }
+        
+        .skill-list li {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .skill-list li:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .skill-name {
+            font-weight: 500;
+        }
+        
+        .skill-level {
+            color: var(--accent);
+            font-weight: 600;
+        }
+        
+        /* Courses Section */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .course-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+        }
+        
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .course-icon {
+            background-color: var(--primary);
+            color: white;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+        }
+        
+        .course-content {
+            padding: 25px;
+        }
+        
+        .course-content h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+        
+        .course-content p {
+            color: var(--gray);
+        }
+        
+        /* GitHub Section */
+        .github-section {
+            background-color: var(--secondary);
+            color: white;
+            text-align: center;
+            padding: 60px 0;
+        }
+        
+        .github-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .github-section p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: #ddd;
+        }
+        
+        .github-stats {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .stat-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            min-width: 150px;
+        }
+        
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        
+        .stat-label {
+            font-size: 16px;
+            margin-top: 5px;
+            color: #ddd;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #111;
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-column h3 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 14px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+            
+            .hero-text p {
+                margin: 0 auto 30px;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 10px 0;
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .hero-text h1 {
+                font-size: 36px;
+            }
+            
+            .hero-text h2 {
+                font-size: 20px;
+            }
+            
+            .section-title h2 {
+                font-size: 30px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .profile-img {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .hero {
+                padding: 70px 0;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
+            .btn {
+                display: block;
+                width: 100%;
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Sanjay<span>L</span></div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#courses">Courses</a></li>
+                    <li><a href="#github">GitHub</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="mobile-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Sanjay L</h1>
+                    <h2>Mechanical Engineering Student & Aspiring Tech Enthusiast</h2>
+                    <p>I'm a second-year Mechanical Engineering student passionate about technology. Currently expanding my skills in AI, web development, and programming through Infosys Springboard courses. Eager to apply my technical knowledge to real-world challenges.</p>
+                    <a href="#about" class="btn">Explore My Journey</a>
+                    <a href="#github" class="btn btn-github"><i class="fab fa-github"></i> View GitHub</a>
+                </div>
+                <div class="hero-image">
+                    <img src="https://drive.google.com/thumbnail?id=18e7fvnjAddhRfOJYMDCUZ2sEMTsS8wuf&sz=w1000" alt="Sanjay L" class="profile-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1537511446984-935f663eb1f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Me</h2>
+                <p>Get to know about my educational background and aspirations</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>My Journey in Engineering & Technology</h3>
+                    <p>As a second-year Mechanical Engineering student, I've developed a strong foundation in analytical thinking and problem-solving. My curiosity about technology led me to explore programming and web development alongside my core engineering studies.</p>
+                    <p>Through Infosys Springboard, I've completed several foundational courses in web technologies and programming. This combination of mechanical engineering principles with modern tech skills gives me a unique perspective on solving complex problems.</p>
+                    <p>I'm particularly interested in how artificial intelligence and generative AI can transform traditional engineering fields. My goal is to bridge the gap between mechanical engineering and cutting-edge technology.</p>
+                    <a href="#contact" class="btn" style="margin-top: 20px;">Get In Touch</a>
+                </div>
+                <div class="education-details">
+                    <h3>Education</h3>
+                    <div class="education-item">
+                        <h4>Second Year, Mechanical Engineering</h4>
+                        <p>Currently pursuing my Bachelor's degree in Mechanical Engineering with a focus on integrating technology into traditional engineering practices.</p>
+                    </div>
+                    <div class="education-item">
+                        <h4>Infosys Springboard</h4>
+                        <p>Completed multiple courses in web technologies and programming, building a solid foundation in modern development practices.</p>
+                    </div>
+                    <div class="education-item">
+                        <h4>GitHub Portfolio</h4>
+                        <p>This portfolio website is hosted on GitHub Pages, demonstrating my web development skills.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" style="background-color: #f8f9fa;">
+        <div class="container">
+            <div class="section-title">
+                <h2>My Skills</h2>
+                <p>Technical competencies I've developed through coursework and self-study</p>
+            </div>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3><i class="fas fa-brain"></i> Artificial Intelligence</h3>
+                    <ul class="skill-list">
+                        <li>
+                            <span class="skill-name">Generative AI</span>
+                            <span class="skill-level">Beginner</span>
+                        </li>
+                        <li>
+                            <span class="skill-name">AI Fundamentals</span>
+                            <span class="skill-level">Beginner</span>
+                        </li>
+                        <li>
+                            <span class="skill-name">Machine Learning Concepts</span>
+                            <span class="skill-level">Beginner</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-code"></i> Programming</h3>
+                    <ul class="skill-list">
+                        <li>
+                            <span class="skill-name">Java Programming</span>
+                            <span class="skill-level">Beginner</span>
+                        </li>
+                        <li>
+                            <span class="skill-name">JavaScript</span>
+                            <span class="skill-level">Beginner</span>
+                        </li>
+                        <li>
+                            <span class="skill-name">Problem Solving</span>
+                            <span class="skill-level">Intermediate</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-laptop-code"></i> Web Development</h3>
+                    <ul class="skill-list">
+                        <li>
+                            <span class="skill-name">HTML5</span>
+                            <span class="skill-level">Intermediate</span>
+                        </li>
+                        <li>
+                            <span class="skill-name">CSS3</span>
+                            <span class="skill-level">Intermediate</span>
+                        </li>
+                        <li>
+                            <span class="skill-name">Frontend Development</span>
+                            <span class="skill-level">Beginner</span>
+                        </li>
+                        <li>
+                            <span class="skill-name">Git & GitHub</span>
+                            <span class="skill-level">Beginner</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="courses">
+        <div class="container">
+            <div class="section-title">
+                <h2>Completed Courses</h2>
+                <p>Infosys Springboard courses I've successfully completed</p>
+            </div>
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-icon">
+                        <i class="fab fa-html5"></i>
+                    </div>
+                    <div class="course-content">
+                        <h3>HTML5</h3>
+                        <p>Mastered the fundamentals of modern HTML5 markup, semantic elements, and web page structure.</p>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-icon">
+                        <i class="fab fa-css3-alt"></i>
+                    </div>
+                    <div class="course-content">
+                        <h3>CSS3</h3>
+                        <p>Learned styling techniques, layouts, responsive design, and CSS3 animations for modern web interfaces.</p>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-icon">
+                        <i class="fab fa-js"></i>
+                    </div>
+                    <div class="course-content">
+                        <h3>JavaScript</h3>
+                        <p>Acquired skills in JavaScript programming, DOM manipulation, and interactive web development.</p>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-icon">
+                        <i class="fab fa-java"></i>
+                    </div>
+                    <div class="course-content">
+                        <h3>Java Essentials</h3>
+                        <p>Gained foundational knowledge in Java programming, object-oriented concepts, and basic algorithms.</p>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <div class="course-content">
+                        <h3>Networking</h3>
+                        <p>Understood networking fundamentals, protocols, and how data communication works across the web.</p>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="course-content">
+                        <h3>Web Technology</h3>
+                        <p>Comprehensive understanding of web technologies, client-server architecture, and internet fundamentals.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GitHub Section -->
+    <section id="github" class="github-section">
+        <div class="container">
+            <h2>GitHub Portfolio</h2>
+            <p>This portfolio website is hosted on GitHub Pages, showcasing my web development skills. Explore my GitHub profile to see my projects and contributions.</p>
+            
+            <a href="https://github.com/yourusername" class="btn btn-github" target="_blank" style="background-color: #333; color: white;">
+                <i class="fab fa-github"></i> Visit My GitHub Profile
+            </a>
+            
+            <div class="github-stats">
+                <div class="stat-item">
+                    <div class="stat-number">6+</div>
+                    <div class="stat-label">Courses Completed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">Skill Categories</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">1</div>
+                    <div class="stat-label">Live Portfolio</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Responsive Design</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer & Contact -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Sanjay L</h3>
+                    <p>Mechanical Engineering student with a passion for technology, AI, and web development. Continuously learning and applying new skills to solve real-world problems.</p>
+                    <div class="social-links">
+                        <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/yourusername" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="mailto:sanjay@example.com"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#courses">Courses</a></li>
+                        <li><a href="#github">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-user-graduate"></i> 2nd Year Mechanical Engineering</li>
+                        <li><i class="fas fa-map-marker-alt"></i> India</li>
+                        <li><i class="fas fa-envelope"></i> sanjay@example.com</li>
+                        <li><i class="fas fa-globe"></i> <a href="https://yourusername.github.io" style="color: #ddd;">yourusername.github.io</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Sanjay L. All rights reserved. | Hosted on <a href="https://pages.github.com" style="color: var(--accent);">GitHub Pages</a> | Designed with HTML, CSS & JavaScript</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const mobileToggle = document.querySelector('.mobile-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Update GitHub link with actual username
+        function updateGitHubLinks() {
+            // Get current URL to extract username
+            const currentUrl = window.location.href;
+            let githubUsername = 'yourusername'; // default
+            
+            // If hosted on GitHub Pages, extract username from URL
+            if(currentUrl.includes('github.io')) {
+                const matches = currentUrl.match(/https?:\/\/([a-zA-Z0-9-]+)\.github\.io/);
+                if(matches && matches[1]) {
+                    githubUsername = matches[1];
+                }
+            }
+            
+            // Update all GitHub links
+            document.querySelectorAll('a[href*="github.com/yourusername"]').forEach(link => {
+                link.href = link.href.replace('yourusername', githubUsername);
+            });
+            
+            // Update portfolio link in footer
+            const portfolioLink = document.querySelector('a[href*="yourusername.github.io"]');
+            if(portfolioLink) {
+                portfolioLink.href = `https://${githubUsername}.github.io`;
+                portfolioLink.textContent = `${githubUsername}.github.io`;
+            }
+        }
+        
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', updateGitHubLinks);
+    </script>
+</body>
+</html>
